@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="text_view_music_title_text_size">26sp</dimen>
+    <dimen name="image_view_cover_height">200dp</dimen>
+    <dimen name="play_button_size">60</dimen>
+</resources>
