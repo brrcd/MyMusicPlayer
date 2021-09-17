@@ -8,4 +8,6 @@
     <string name="play_content">play</string>
     <string name="shuffle_content">shuffle</string>
     <string name="cover_content">cover</string>
+    <string name="notification_channel_name">Music notification channel</string>
+    <string name="notification_channel_description">some description for channel</string>
 </resources>
