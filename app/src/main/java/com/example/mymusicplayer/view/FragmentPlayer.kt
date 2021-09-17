@@ -27,9 +27,7 @@ class FragmentPlayer : Fragment(), Control {
     private val viewModel: FragmentPlayerViewModel by viewModel()
     private var _binding: FragmentPlayerBinding? = null
     private val binding get() = _binding!!
-    private var handler = Handler(Looper.getMainLooper())
     private lateinit var mediaPlayer: MediaPlayer
-    private lateinit var runnable: Runnable
     private lateinit var mediaPlayerNotification: MediaPlayerNotification
 
     override fun onCreateView(
@@ -63,7 +61,6 @@ class FragmentPlayer : Fragment(), Control {
                 musicTitle.text = appState.song.title
                 cover.setImageResource(appState.song.coverRes)
                 initPlayerControlButtons()
-//                initSeekBarListener()
             }
             is AppState.Loading -> {
 
@@ -79,15 +76,12 @@ class FragmentPlayer : Fragment(), Control {
             when (intent.extras?.getString("action_name")) {
                 MediaPlayerNotification.ACTION_PLAY -> {
                     onPressPlay()
-                    Log.v("tesstest", "play pressed")
                 }
                 MediaPlayerNotification.ACTION_LOOP -> {
                     onPressLoop()
-                    Log.v("tesstest", "loop pressed")
                 }
                 MediaPlayerNotification.ACTION_SHUFFLE -> {
                     onPressShuffle()
-                    Log.v("tesstest", "shuffle pressed")
                 }
             }
         }
@@ -104,28 +98,6 @@ class FragmentPlayer : Fragment(), Control {
             onPressShuffle()
         }
     }
-
-//    private fun initSeekBarListener() = with(binding) {
-//        seekbar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-//            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-//                if (fromUser)
-//                    mediaPlayer.seekTo(progress * 1000)
-//            }
-//
-//            override fun onStartTrackingTouch(seekBar: SeekBar?) {
-//            }
-//
-//            override fun onStopTrackingTouch(seekBar: SeekBar?) {
-//            }
-//        })
-//        seekbar.max = mediaPlayer.duration / 1000
-//
-//        runnable = Runnable {
-//            seekbar.progress = mediaPlayer.currentPosition / 1000
-//            handler.postDelayed(runnable, 1000)
-//        }
-//        handler.postDelayed(runnable, 1000)
-//    }
 
     override fun onDestroyView() {
         super.onDestroyView()
