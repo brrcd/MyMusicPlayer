@@ -7,6 +7,7 @@ import com.example.mymusicplayer.model.AppState
 import com.example.mymusicplayer.model.entity.Song
 import com.example.mymusicplayer.model.repository.Repository
 import kotlinx.coroutines.*
+import kotlin.random.Random
 
 class FragmentPlayerViewModel(private val repository: Repository) : ViewModel() {
 
@@ -24,10 +25,10 @@ class FragmentPlayerViewModel(private val repository: Repository) : ViewModel() 
 
     fun getLiveData() = liveDataToObserve
 
-    fun getSong(title: String) {
+    fun getSongByTitle(title: String) {
         liveDataToObserve.value = AppState.Loading
         job = CoroutineScope(Dispatchers.Default).launch {
-            val data = repository.getSong(title)
+            val data = repository.getSongByTitle(title)
             liveDataToObserve.postValue(AppState.Success(data))
         }
     }
@@ -35,7 +36,8 @@ class FragmentPlayerViewModel(private val repository: Repository) : ViewModel() 
     fun getRandomSong() {
         liveDataToObserve.value = AppState.Loading
         job = CoroutineScope(Dispatchers.Default).launch {
-            
+            val data = repository.getSongById(Random.nextLong(1, 4))
+            liveDataToObserve.postValue(AppState.Success(data))
         }
     }
 }

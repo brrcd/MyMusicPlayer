@@ -12,10 +12,11 @@ class RepositoryImpl: Repository {
     override fun saveSongToDB(song: Song) =
         SongDatabase.db.songDao().insert(convertSongToEntity(song))
 
+    override fun getSongByTitle(title: String): Song =
+        convertEntityToSong(SongDatabase.db.songDao().selectSongByTitle(title))
 
-    override fun getSong(title: String): Song =
-        convertEntityToSong(SongDatabase.db.songDao().selectSong(title))
-
+    override fun getSongById(id: Long): Song =
+        convertEntityToSong(SongDatabase.db.songDao().selectSongById(id))
 
     private fun convertEntityToSong(entity: SongEntity) =
         Song(

@@ -8,5 +8,7 @@ interface Repository {
 
     fun saveSongToDB(song: Song)
 
-    fun getSong(title: String): Song
+    fun getSongByTitle(title: String): Song
+
+    fun getSongById(id: Long): Song
 }

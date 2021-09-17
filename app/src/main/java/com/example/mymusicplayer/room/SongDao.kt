@@ -9,7 +9,10 @@ interface SongDao {
     fun all(): List<SongEntity>
 
     @Query ("SELECT * FROM SongEntity WHERE title = :title")
-    fun selectSong(title: String): SongEntity
+    fun selectSongByTitle(title: String): SongEntity
+
+    @Query ("SELECT * FROM SongEntity WHERE id = :id")
+    fun selectSongById(id: Long): SongEntity
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(entity: SongEntity)
