@@ -43,10 +43,10 @@ class FragmentPlayer : Fragment(), Control {
         super.onViewCreated(view, savedInstanceState)
 
         mediaPlayerNotification = MediaPlayerNotification()
+        mediaPlayer = MediaPlayer()
 
         activity?.registerReceiver(broadcastReceiver, IntentFilter("action_name"))
 
-        mediaPlayer = MediaPlayer()
         viewModel.populateDB()
         viewModel.getLiveData().observe(viewLifecycleOwner, { renderData(it) })
         viewModel.getSongByTitle("Moose")
@@ -134,6 +134,8 @@ class FragmentPlayer : Fragment(), Control {
         }
     }
 
+    // при свернутом приложении если нажать после этой кнопки на кнопку Play приложение крашится
+    // плеер не получает песню из viewModel
     override fun onPressShuffle() {
         mediaPlayer.release()
         viewModel.getRandomSong()

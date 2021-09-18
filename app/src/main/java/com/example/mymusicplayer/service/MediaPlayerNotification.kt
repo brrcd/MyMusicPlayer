@@ -36,7 +36,6 @@ class MediaPlayerNotification : Service() {
         notificationManager.createNotificationChannel(notificationChannel)
         val notification = Notification.Builder(context, "15")
             .setContentTitle(song.title)
-            .setContentText("text")
             .setStyle(Notification.BigPictureStyle()
                 .bigPicture(BitmapFactory.decodeResource(context.resources, song.coverRes))
             )
