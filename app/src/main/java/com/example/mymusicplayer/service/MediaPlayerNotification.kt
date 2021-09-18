@@ -3,6 +3,7 @@ package com.example.mymusicplayer.service
 import android.app.*
 import android.content.Context
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.os.Build
 import android.os.IBinder
 import androidx.annotation.RequiresApi
@@ -36,6 +37,9 @@ class MediaPlayerNotification : Service() {
         val notification = Notification.Builder(context, "15")
             .setContentTitle(song.title)
             .setContentText("text")
+            .setStyle(Notification.BigPictureStyle()
+                .bigPicture(BitmapFactory.decodeResource(context.resources, song.coverRes))
+            )
             .setSmallIcon(R.drawable.ic_launcher_foreground)
             .addAction(action(pendingIntent(context, ACTION_LOOP), "Loop"))
             .addAction(action(pendingIntent(context, ACTION_PLAY), "Play"))
